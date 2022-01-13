@@ -13,8 +13,7 @@ import {auth, createUserProfileDocument} from './firebase/firebase.utils';
 // redux
 import {connect} from 'react-redux';
 import {setCurrentUser} from './redux/user/user.actions';
-import userReducer from './redux/user/user.reducer';
-import { map } from '@firebase/util';
+
 
 
 

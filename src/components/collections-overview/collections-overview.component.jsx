@@ -15,6 +15,8 @@ const CollectionOverview = ({collections}) => (
                 <CollectionPreview key={id} {...otherCollectionProps}></CollectionPreview>
             ))
         }
+
+        
     </div>
 );
 

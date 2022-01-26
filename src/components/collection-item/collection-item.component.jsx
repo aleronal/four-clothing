@@ -1,5 +1,6 @@
 import React from 'react'; 
 import './collection-item.styles.scss';
+import {CustomButtonContainer} from '../custom-button/custom-button.styles';
 
 import { connect } from 'react-redux';
 import { addItem } from '../../redux/cart/cart.actions';
@@ -19,7 +20,7 @@ const CollectionItem = ({item, addItem}) => {
             <span className='name'>{name}</span>
             <span className='price'>{price}</span>
         </div>
-        <CustomButton onClick={()=>addItem(item)} inverted>Add To Cart</CustomButton>
+        <CustomButtonContainer className='custom-button' onClick={()=>addItem(item)} inverted>Add To Cart</CustomButtonContainer>
              
     </div>
     );

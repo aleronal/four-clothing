@@ -20,10 +20,6 @@ import {selectCurrentUser} from './redux/user/user.selector';
 
 
 
-
-
-
-
 class App extends React.Component {
  
 

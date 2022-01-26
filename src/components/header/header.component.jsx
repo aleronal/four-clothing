@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './header.styles.scss';
+import { HeaderContainer, LogoContainer, OptionsContainer, OptionDiv, OptionLink} from './header.styles';
 
 import {ReactComponent as Logo} from '../../assets/crown.svg';
 
@@ -15,33 +16,33 @@ import {selectCurrentUser} from '../../redux/user/user.selector';
 
 const Header = ({currentUser, hidden}) => {
     return (
-        <div className='header'>
-            <Link className='logo-container' to='/'>
+        <HeaderContainer>
+            <LogoContainer to='/'>
                 <Logo className='logo'></Logo>
-            </Link>
-            <div className='options'>
-                <Link className='option' to='/shop'>
+            </LogoContainer>
+            <OptionsContainer>
+                <OptionLink to='/shop'>
                     Shop
-                </Link>
-                <Link className='option' to='/contact'>
+                </OptionLink>
+                <OptionLink to='/contact'>
                     Contact
-                </Link>
+                </OptionLink>
                 {
                     currentUser
-                    ? (<div className='option' onClick={() => auth.signOut()}>Sign Out</div>)
-                    : (<Link className='option' to='/signin'>Sign in</Link>)
+                    ? (<OptionDiv onClick={() => auth.signOut()}>Sign Out</OptionDiv>)
+                    : (<OptionLink to='/signin'>Sign in</OptionLink>)
                 }
 
                 <CartIcon></CartIcon>  
                   
-            </div>
+            </OptionsContainer> 
             {
             hidden 
             ? null 
             : <CartDropdown></CartDropdown> 
             
             }
-        </div>
+        </HeaderContainer>
     );
 };
 

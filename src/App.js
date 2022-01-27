@@ -18,6 +18,8 @@ import {connect} from 'react-redux';
 import {setCurrentUser} from './redux/user/user.actions';
 import {selectCurrentUser} from './redux/user/user.selector';
 
+ 
+
 
 
 class App extends React.Component {
@@ -26,7 +28,7 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount(){
-
+  
     const {setCurrentUser} = this.props;
 
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
@@ -45,6 +47,11 @@ class App extends React.Component {
 
       else{
         setCurrentUser(userAuth);
+
+
+        // this was the function that we used to add the collections in the database and not do it manually with the new function that we created on firebase utils called (addCollectionAndDocuments); commented it out just so i won't run everytime the component mounts. the collectionsArray came from the selectCollectionsForPreview selector ->
+        // addCollectionAndDocuments('collections', collectionsArray.map( ({ title, items}) => ({title, items}))); 
+
       }
       
     });
@@ -74,11 +81,12 @@ class App extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
 });
 
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user)),
+  
 });
 
 export default connect(mapStateToProps, mapDispatchToProps, )(App);

@@ -13,7 +13,6 @@ const CollectionPage = () => {
     let params = useParams();
 
     const collection = useSelector(selectCollection(params.collectionId))
-    console.log(collection);
     const {title, items} = collection;
     
 return(

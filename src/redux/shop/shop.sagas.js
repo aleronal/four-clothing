@@ -1,4 +1,4 @@
-import { takeEvery, call, put } from 'redux-saga/effects'; 
+import { takeLatest, call, put } from 'redux-saga/effects'; 
 import {firestore, convertCollectionSnapshotToMap} from '../../firebase/firebase.utils';
 
 import { fetchCollectionsSuccess, fetchCollectionsFailure } from './shop.actions';
@@ -17,7 +17,7 @@ export function* fetchCollectionsAsync(){
     const snapshot = yield collectionRef.get();
 
     //Because it could potentially take a while before this method is Completed we use the call function.
-    // This takes a function as the first parameter, and the functions Own paramaters and subsequent paramaters .
+    // This takes a function as the first paramester, and the functions Own paramaters and subsequent paramaters .
     // Because we use call it's possible to use yield on the function and therefore use it in the saga.
     const collectionsMap = yield call(convertCollectionSnapshotToMap,snapshot); 
         
@@ -31,6 +31,6 @@ export function* fetchCollectionsAsync(){
 
 export function* fetchCollectionsStart() {
 
-    yield takeEvery(ShopActionTypes.FETCH_COLLECTIONS_START, fetchCollectionsAsync);
+    yield takeLatest(ShopActionTypes.FETCH_COLLECTIONS_START, fetchCollectionsAsync);
 
 }

@@ -8,7 +8,7 @@ import CheckoutPage from './pages/checkout/checkout.component';
 import Header from './components/header/header.component';
 import SigninSignOut from './pages/signin-signout/signin-signout.component';
 
-import ScrollToTop from './components/scrollToTop/scrollToTop.component'
+import ScrollToTop from './components/scrollToTop/scrollToTop.component';
 
 // firebase
 import {auth, createUserProfileDocument} from './firebase/firebase.utils';

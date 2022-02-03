@@ -8,6 +8,7 @@ import CheckoutPage from './pages/checkout/checkout.component';
 import Header from './components/header/header.component';
 import SigninSignOut from './pages/signin-signout/signin-signout.component';
 
+import ScrollToTop from './components/scrollToTop/scrollToTop.component'
 
 // firebase
 import {auth, createUserProfileDocument} from './firebase/firebase.utils';
@@ -19,12 +20,8 @@ import {setCurrentUser} from './redux/user/user.actions';
 import {selectCurrentUser} from './redux/user/user.selector';
 
  
-
-
-
 class App extends React.Component {
  
-
   unsubscribeFromAuth = null;
 
   componentDidMount(){
@@ -67,14 +64,16 @@ class App extends React.Component {
     return (
       <div>
         <Header></Header>
-        <Routes>
-          <Route exact path='/' element= {<HomePage/>} />
-          <Route path='/shop/*' element= {<ShopPage/>} />
-          <Route path='/signin' 
-          element= {this.props.currentUser ? (<Navigate to='/' />) : (<SigninSignOut />)} 
-          />
-          <Route path='/checkout' element= {<CheckoutPage/>} />
-        </Routes>  
+        <ScrollToTop>
+          <Routes>
+            <Route exact path='/' element= {<HomePage/>} />
+            <Route path='/shop/*' element= {<ShopPage/>} />
+            <Route path='/signin' 
+            element= {this.props.currentUser ? (<Navigate to='/' />) : (<SigninSignOut />)} 
+            />
+            <Route path='/checkout' element= {<CheckoutPage/>} />
+          </Routes>  
+        </ScrollToTop>
       </div>
     );
     }

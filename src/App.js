@@ -28,22 +28,22 @@ class App extends React.Component {
   
     const {setCurrentUser} = this.props;
 
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-      if(userAuth){
-        const userRef = await createUserProfileDocument(userAuth);
+    // this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+    //   if(userAuth){
+    //     const userRef = await createUserProfileDocument(userAuth);
 
-        userRef.onSnapshot(snapShot => {
-          setCurrentUser ({
-              id: snapShot.id,
-              ...snapShot.data()
-            });
+    //     userRef.onSnapshot(snapShot => {
+    //       setCurrentUser ({
+    //           id: snapShot.id,
+    //           ...snapShot.data()
+    //         });
           
-          });
+    //       });
    
-      }
+    //   }
 
-      else{
-        setCurrentUser(userAuth);
+    //   else{
+    //     setCurrentUser(userAuth);
 
 
         // this was the function that we used to add the collections in the database and not do it manually with the new function that we created on firebase utils called (addCollectionAndDocuments); commented it out just so i won't run everytime the component mounts. the collectionsArray came from the selectCollectionsForPreview selector ->
@@ -51,9 +51,9 @@ class App extends React.Component {
 
       }
       
-    });
+  //   });
 
-  }
+  // }
 
   componentWillUnmount()
   {

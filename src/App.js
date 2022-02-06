@@ -10,40 +10,21 @@ import SigninSignOut from './pages/signin-signout/signin-signout.component';
 
 import ScrollToTop from './components/scrollToTop/scrollToTop.component';
 
-// firebase
-import {auth, createUserProfileDocument} from './firebase/firebase.utils';
-
 // redux
 import {createStructuredSelector} from 'reselect';
 import {connect} from 'react-redux';
-import {setCurrentUser} from './redux/user/user.actions';
-import {selectCurrentUser} from './redux/user/user.selector';
 
+import {selectCurrentUser} from './redux/user/user.selector';
+import {checkUserSession} from './redux/user/user.actions';
  
 class App extends React.Component {
  
-  unsubscribeFromAuth = null;
+   unsubscribeFromAuth = null;
 
   componentDidMount(){
   
-    const {setCurrentUser} = this.props;
-
-    // this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-    //   if(userAuth){
-    //     const userRef = await createUserProfileDocument(userAuth);
-
-    //     userRef.onSnapshot(snapShot => {
-    //       setCurrentUser ({
-    //           id: snapShot.id,
-    //           ...snapShot.data()
-    //         });
-          
-    //       });
-   
-    //   }
-
-    //   else{
-    //     setCurrentUser(userAuth);
+  const {checkUserSession} = this.props;
+  checkUserSession();
 
 
         // this was the function that we used to add the collections in the database and not do it manually with the new function that we created on firebase utils called (addCollectionAndDocuments); commented it out just so i won't run everytime the component mounts. the collectionsArray came from the selectCollectionsForPreview selector ->
@@ -84,8 +65,8 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user)),
-  
-});
+  checkUserSession: () => dispatch(checkUserSession())
+})
 
-export default connect(mapStateToProps, mapDispatchToProps, )(App);
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

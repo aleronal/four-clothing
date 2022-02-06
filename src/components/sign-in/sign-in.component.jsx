@@ -3,7 +3,6 @@ import './sign-in.styles.scss';
 
 import {connect} from 'react-redux';
 
-
 import {googleSignInStart, emailSignInStart, emailSignInFailure} from '../../redux/user/user.actions';
 
 import FormInput from '../form-input/form-input.component';
@@ -24,7 +23,6 @@ class SignIn extends React.Component {
         event.preventDefault();
 
         const {emailSignInStart} = this.props;
-
         const { email, password } = this.state;  
         
         emailSignInStart(email, password);

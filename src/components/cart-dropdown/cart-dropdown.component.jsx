@@ -29,8 +29,6 @@ const CartDropdown = ({cartItems, dispatch}) => {
             
              }}>Go to Checkout</CustomButton>          
            
-                  
-            
         </div>
     </div>
     )

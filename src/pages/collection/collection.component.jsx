@@ -27,7 +27,4 @@ return(
 )};
 
 
-
-
-
 export default CollectionPage;

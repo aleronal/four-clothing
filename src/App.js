@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Route, Routes, Navigate} from 'react-router';
 
 import './App.css';
@@ -17,31 +17,24 @@ import {connect} from 'react-redux';
 import {selectCurrentUser} from './redux/user/user.selector';
 import {checkUserSession} from './redux/user/user.actions';
  
-class App extends React.Component {
+const App = ({checkUserSession, currentUser}) => {
  
-   unsubscribeFromAuth = null;
+  useEffect(() => {
 
-  componentDidMount(){
-  
-  const {checkUserSession} = this.props;
-  checkUserSession();
+    checkUserSession();
 
+    // Second argument passed in the useEffect() function it's to check wether the value has change. if so the use effect function will run! otherwise it won't! if you leave an empty array will run like componentdidmount(). 
+  },[checkUserSession]);
+
+ 
 
         // this was the function that we used to add the collections in the database and not do it manually with the new function that we created on firebase utils called (addCollectionAndDocuments); commented it out just so i won't run everytime the component mounts. the collectionsArray came from the selectCollectionsForPreview selector ->
         // addCollectionAndDocuments('collections', collectionsArray.map( ({ title, items}) => ({title, items}))); 
 
-      }
-      
   //   });
-
   // }
 
-  componentWillUnmount()
-  {
-    this.unsubscribeFromAuth();
-  }
-
-  render(){
+  
     return (
       <div>
         <Header></Header>
@@ -50,15 +43,15 @@ class App extends React.Component {
             <Route exact path='/' element= {<HomePage/>} />
             <Route path='/shop/*' element= {<ShopPage/>} />
             <Route path='/signin' 
-            element= {this.props.currentUser ? (<Navigate to='/' />) : (<SigninSignOut />)} 
+            element= {currentUser ? (<Navigate to='/' />) : (<SigninSignOut />)} 
             />
             <Route path='/checkout' element= {<CheckoutPage/>} />
           </Routes>  
         </ScrollToTop>
       </div>
     );
-    }
-}
+  }
+
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,

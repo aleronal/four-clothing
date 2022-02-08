@@ -15,4 +15,4 @@ const CollectionPageContainer = compose(
     WithSpinner
 )(CollectionPage);
 
-export default CollectionPageContainer
+export default CollectionPageContainer;

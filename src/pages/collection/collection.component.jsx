@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import {selectCollection} from '../../redux/shop/shop.selectors';
 
 const CollectionPage = () => {
-   
+
     let params = useParams();
 
     const collection = useSelector(selectCollection(params.collectionId))

@@ -9,6 +9,8 @@ import CollectionsOverviewContainer from '../../components/collections-overview/
 import {fetchCollectionsStart} from '../../redux/shop/shop.actions';
 
 
+
+
 const ShopPage = ({fetchCollectionsStart}) =>  {
 
   useEffect(() => {
